@@ -1,0 +1,1 @@
+class Collision{static checkCollide(t,a){var i=Math.abs(t.x-a.x),l=Math.abs(t.y-a.y);return i<a.width/2&&l<a.height/2}}export default Collision;
