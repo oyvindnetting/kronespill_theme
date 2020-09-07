@@ -11,6 +11,7 @@ import spritesJSON from '../assets/images/sprites/knipsekassa.json'
 import shapesJSON from '../assets/images/sprites/knipsekassa_fysikkmodeller.json'
 import backgroundImage from '../assets/images/sprites/Bakgrunn.jpg'
 
+
 //import meowMp3 from '../assets/audio/meow.mp3'
 
 
@@ -34,7 +35,7 @@ export default class extends Phaser.Scene {
 
 		game.players = []
 
-
+		window.game = game;
 
 		this.fontsReady = false
 		this.fontsLoaded = this.fontsLoaded.bind(this)

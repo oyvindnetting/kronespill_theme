@@ -5,8 +5,9 @@ class Model {
   constructor () {
 	this._score = 0
 	this._coinsLeft = 10
-    this._soundOn = true
-    this._musicOn = true
+  this._soundOn = true
+  this._musicOn = true
+	this._coinInMotion = false
 	this.gameOver = false
 	this.G = new Constants()
   }

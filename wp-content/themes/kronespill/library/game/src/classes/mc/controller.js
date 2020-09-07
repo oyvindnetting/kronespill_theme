@@ -9,6 +9,7 @@ class Controller {
     game.emitter.on(G.UP_POINTS, this.upPoints)
     game.emitter.on(G.TOGGLE_SOUND, this.toggleSound)
     game.emitter.on(G.TOGGLE_MUSIC, this.toggleMusic)
+    game.emitter.on(G.SHOOT_COIN, this.shootCoin)
   }
 
   toggleSound (val) {
@@ -18,6 +19,10 @@ class Controller {
 
   toggleMusic (val) {
     window.game.model.musicOn = val
+  }
+
+  shootCoin (val) {
+    window.game.model.coinInMotion = val
   }
 
   setScore (score) {

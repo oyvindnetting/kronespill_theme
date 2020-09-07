@@ -19,6 +19,10 @@ import Slot from '../classes/slot'
 
 import WPAPI from 'wpapi'
 
+
+var nextCoin = true;
+
+
 export default class extends Phaser.Scene {
 	constructor() {
 		super({
@@ -31,6 +35,9 @@ export default class extends Phaser.Scene {
 		this.coinsLeft = window.game.model.coinsLeft
 
 		this.currentSpeed = 0
+		this.shootPower = 0
+
+		this.coinInMotion = false
 	
 	}
 
@@ -67,6 +74,7 @@ export default class extends Phaser.Scene {
 	create() {
 
 
+		game.input.mouse.capture = true;
 
 		// define our objects
 
@@ -77,11 +85,22 @@ export default class extends Phaser.Scene {
 
 		var background = this.add.sprite(0, 0, 'bakgrunn').setOrigin(0);
 		
+
+		this.hand = this.matter.add.sprite(1000, 390, 'sprites','Hand.png', {
+
+			isStatic: true
+
+		})
+		this.hand.setInteractive();
+
+
 		var lines = this.matter.add.sprite(85, 390, 'sprites','Lines.png', {
 			shape: shapes.Lines,
 			isStatic: true
 
 		})
+
+
 		lines.setPosition(window.game.config.width / 2,830);
 
 
@@ -268,7 +287,7 @@ export default class extends Phaser.Scene {
 
 		let shapes = this.cache.json.get('shapes')
 
-		for (let i = 0;i < window.game.config.width - 500; i+=50) {
+		for (let i = 0;i < window.game.config.width - 500; i+=30) {
 			let a = obj.matter.add.sprite(i+300, 600, 'sprites', 'Coin.png', {
 				shape: shapes.Coin
 			})
@@ -340,8 +359,6 @@ export default class extends Phaser.Scene {
 		})
 	}
 
-
-
 	hitSlot(val, slotObj) {
 
 		this.currentScore += val
@@ -361,11 +378,44 @@ export default class extends Phaser.Scene {
 		window.game.controller.setScore(this.currentScore)
 	}
 
-	shootCoin() {
-	let shapes = this.cache.json.get('shapes')
-		this.newCoin = this.matter.add.sprite(500, 100, 'sprites', 'Coin.png', {
-			shape: shapes.Coin
-		})
+	resetCoin() {
+		this.coinInMotion = false;
+		console.log(this.coinInMotion)
+	}
+
+	shootCoin(obj) {
+		
+		let shapes = this.cache.json.get('shapes')
+
+	
+
+		if (!this.coinInMotion) {
+			this.coinInMotion = true;
+			this.newCoin = obj.matter.add.sprite(780, 100, 'sprites', 'Coin.png', {
+				shape: shapes.Coin
+			})
+	
+			let veloX = Math.random() * 20
+			let veloY = this.currentSpeed + (Math.random() * 4)
+	
+	
+			this.newCoin.setVelocityX(-veloX)
+			this.newCoin.setVelocityY(-veloY / 4)
+
+
+
+			this.time.addEvent({
+				delay: 500,
+				callback: ()=>{
+					console.log("test")
+					console.log(this.coinInMotion)
+					this.coinInMotion = false
+				},
+				loop: false
+			})
+		}
+
+
 		// site is now configured to use authentication
 	/*
 		let currentUser = this.wp.users().me((data) => {
@@ -432,13 +482,19 @@ export default class extends Phaser.Scene {
 
 
 	update() {
-
-		if (!game.input.activePointer.isDown && this.currentSpeed > 0) {
-
-
-			this.shootCoin()
+		var obj = this
+	
 
 
-		}
+		  this.hand.on('pointerdown', function() {
+			// do something to the cookie
+			obj.shootCoin(obj)
+
+	
+		 }, this.hand);
+
+
+
 	}
+
 }

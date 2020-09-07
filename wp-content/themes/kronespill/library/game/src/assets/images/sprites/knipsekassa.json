@@ -5,7 +5,7 @@
 			"format": "RGBA8888",
 			"size": {
 				"w": 853,
-				"h": 815
+				"h": 1123
 			},
 			"scale": 1,
 			"frames": [
@@ -260,6 +260,31 @@
 					}
 				},
 				{
+					"filename": "Hand.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 187,
+						"h": 394
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 187,
+						"h": 394
+					},
+					"frame": {
+						"x": 626,
+						"y": 1,
+						"w": 187,
+						"h": 394
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
 					"filename": "Lines.png",
 					"rotated": false,
 					"trimmed": false,
@@ -275,7 +300,7 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 89,
+						"y": 397,
 						"w": 851,
 						"h": 725
 					},
@@ -290,6 +315,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:5379440e5c1841bf0333d0d2b3bd3e33:942f75edcd2ec5d72bd0aa59db0603f2:9c3eee3770d45109b152fbee92793fbf$"
+		"smartupdate": "$TexturePacker:SmartUpdate:5275a288f62c98a61702e2b8ab825663:e9037e04e39d84810c24fae6926df4dd:9c3eee3770d45109b152fbee92793fbf$"
 	}
 }

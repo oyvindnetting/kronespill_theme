@@ -9,10 +9,20 @@ var config
 if (isMobile === -1) {
   config = {
     type: Phaser.AUTO,
-    parent: 'content',
-    width: 1020,
-    height: 1312,
+ 
     isMobile: isMobile,
+    scale: {
+      mode: Phaser.Scale.FIT,
+      parent: 'content',
+      width: 1020,
+      height: 1312,
+
+      max: {
+          width: window.innerHeight*0.7,
+          height: window.innerHeight
+      }
+  },
+
 	localStorageName: 'phaseres6webpack',
 	
     physics: {
@@ -30,13 +40,14 @@ if (isMobile === -1) {
     type: Phaser.AUTO,
     isMobile: isMobile,
 
-	scale: {
-		parent: 'phaser-game',
-		mode: Phaser.Scale.FIT,
-		autoCenter: Phaser.Scale.CENTER_BOTH,
-		width: window.innerWidth,
-		height: window.innerHeight
-	},
+    scale: {
+      mode: Phaser.Scale.FIT,
+      parent: 'content',
+      width: 1020,
+      height: 1312,
+
+  },
+
 	autoCenter: 1,
 	scaleMode: 3,
     physics: {
